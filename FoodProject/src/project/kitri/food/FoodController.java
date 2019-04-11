@@ -4,16 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import project.kitri.service.FoodService;
-import project.kitri.service.FoodServiceImpl;
 
 public class FoodController implements ActionListener{
 	
-	FoodFrame foodFrame;
-	FoodService foodService;
+	public FoodFrame foodFrame;
+//	FoodService foodService;
+	public FoodService foodService;
 	
 	public FoodController(FoodFrame foodFrame) {
 		this.foodFrame = foodFrame;
-		foodService = new FoodServiceImpl(this);
+		foodService = new FoodService(this);
 		
 	}
 
@@ -40,6 +40,32 @@ public class FoodController implements ActionListener{
 	    	  foodService.cancelOrder();
 	      } else if(ob == foodFrame.completeBtn) {
 	    	  foodService.completeOrder();
+	      } else {
+	    	  for(int i=0; i <foodFrame.dv.drinkbtn.length; i++) {
+	    		  if(ob == foodFrame.dv.drinkbtn[i]) {
+	    			  foodService.drinkProcess(foodFrame.dv.bt[i]);
+			    	  break;
+			      }
+	    	  }
+	    	  for(int i=0; i <foodFrame.sv.snackbtn.length; i++) {
+	    		  if(ob == foodFrame.sv.snackbtn[i]) {
+	    			  foodService.snackProcess();
+			    	  break;
+			      }
+	    	  }
+	    	  for(int i=0; i <foodFrame.nv.noodlebtn.length; i++) {
+	    		  if(ob == foodFrame.nv.noodlebtn[i]) {
+	    			  foodService.noodleProcess();
+			    	  break;
+			      }
+	    	  }
+	    	  for(int i=0; i <foodFrame.ifv.instfoodbtn.length; i++) {
+	    		  if(ob == foodFrame.ifv.instfoodbtn[i]) {
+	    			  foodService.instFoodProcess();
+			    	  break;
+			      }
+	    	  }
+	    	  
 	      }
 		
 	}

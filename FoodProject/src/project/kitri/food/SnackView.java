@@ -8,18 +8,19 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class SnackView extends JPanel {
-
+	public String bt[];
+	public JButton snackbtn[];
 	/**
 	 * Create the panel.
 	 */
 	public SnackView() {
 		setLayout(new GridLayout(5, 5, 1, 1));
 		setBounds(713, 123, 656, 583);
-		String bt[] = new String[25];
+		bt = new String[25];
 		//bt¾ÈÀÇ ³»¿ë : Food ClassÀÇ Food_Name
 		bt[0] = "²¿ºÏÄ¨";
 		bt[1] = "»õ¿ì±ø";
-		JButton snackbtn[] = new JButton[25];
+		snackbtn = new JButton[25];
 		int len = snackbtn.length;
 		for(int i=0; i<len; i++) {
 			snackbtn[i] = new JButton(bt[i]);

@@ -64,7 +64,7 @@ public class FoodDao {
 //		}
 //	}
 	//한개의 food 정보
-	public FoodDto selectFood(String food_num) {
+	public FoodDto selectFood(String food_name) {
 		FoodDto foodDto = new FoodDto(); // FoodDto에 OrderHstrDto, StockDto 생성해놓음
 		
 		conn = null;					//연결
@@ -79,14 +79,13 @@ public class FoodDao {
 					+ "from food, order_hstr, stock "
 					+ "where food.food_num = order_hstr.food_num "
 					+ "and food.food_ctg = stock.food_ctg "
-					+ "and food.food_num = ?";
+					+ "and food.food_name = ?";
 			
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, food_num);
+			stmt.setString(1, food_name);//?의 숫자번쨰
 			rs = stmt.executeQuery();
 			
 			if(rs.next()) {
-				foodDto.setFoodNum(rs.getString("food_num"));
 				foodDto.setFoodCtg(rs.getString("food_ctg"));
 				foodDto.setFoodName(rs.getString("food_name"));
 				foodDto.setFoodPrice(rs.getInt("food_price"));
@@ -128,8 +127,7 @@ public class FoodDao {
 			String sql= "select food_ctg, food_name , order_amt, food_price, rest_amt "
 					+ "from food, order_hstr, stock "
 					+ "where food.food_num = order_hstr.food_num "
-					+ "and food.food_ctg = stock.food_ctg "
-					+ "and food.food_num = ?";
+					+ "and food.food_ctg = stock.food_ctg ";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
@@ -142,7 +140,8 @@ public class FoodDao {
 				String rest_amt = rs.getString("rest_amt");
 				
 				Vector row = new Vector();
-				row.add(no);
+				
+				row.add(no);///////////????????
 				row.add(food_ctg);
 				row.add(food_name);
 				row.add(order_amt);
@@ -168,5 +167,7 @@ public class FoodDao {
 		}
 		return data;
 	}
+	
+	//update 수량 고치기 / 재고 고치기
 
 }

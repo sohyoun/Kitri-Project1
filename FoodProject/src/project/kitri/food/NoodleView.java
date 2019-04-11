@@ -8,18 +8,19 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class NoodleView extends JPanel {
-
+	public String bt[];
+	public JButton noodlebtn[];
 	/**
 	 * Create the panel.
 	 */
 	public NoodleView() {
 		setLayout(new GridLayout(5, 5));
 		setBounds(713, 123, 656, 583);
-		String bt[] = new String[25];
+		bt = new String[25];
 		//bt안의 내용 : Food Class의 Food_Name
 		bt[0] = "신라면";
 		bt[1] = "진라면";
-		JButton noodlebtn[] = new JButton[25];
+		noodlebtn = new JButton[25];
 		int len = noodlebtn.length;
 		for(int i=0; i<len; i++) {
 			noodlebtn[i] = new JButton(bt[i]);

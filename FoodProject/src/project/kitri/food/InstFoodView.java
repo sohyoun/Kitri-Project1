@@ -8,18 +8,19 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class InstFoodView extends JPanel {
-
+	public String bt[];
+	public JButton instfoodbtn[];
 	/**
 	 * Create the panel.
 	 */
 	public InstFoodView() {
 		setLayout(new GridLayout(5, 5));
 		setBounds(713, 123, 656, 583);
-		String bt[] = new String[25];
+		bt = new String[25];
 		//btæ»¿« ≥ªøÎ : Food Class¿« Food_Name
 		bt[0] = "∫∫¿Ωπ‰";
 		bt[1] = "≥ø∫Ò∂Û∏È";
-		JButton instfoodbtn[] = new JButton[25];
+		instfoodbtn = new JButton[25];
 		int len = instfoodbtn.length;
 		for(int i=0; i<len; i++) {
 			instfoodbtn[i] = new JButton(bt[i]);

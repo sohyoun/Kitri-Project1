@@ -29,10 +29,10 @@ public class FoodFrame extends JFrame{
 	   //메뉴판 panel
 	   JPanel menuPanel;
 	   //메뉴판 View
-	   DrinkView dv = new DrinkView();
-	   SnackView sv = new SnackView();
-	   NoodleView nv = new NoodleView();
-	   InstFoodView ifv = new InstFoodView();
+	   public DrinkView dv = new DrinkView();
+	   public SnackView sv = new SnackView();
+	   public NoodleView nv = new NoodleView();
+	   public InstFoodView ifv = new InstFoodView();
 	   
 	   CardLayout card = new CardLayout();
 	   //////////////////////////////////
@@ -54,7 +54,7 @@ public class FoodFrame extends JFrame{
 	   
 	   ///////////////////////////////////////
 	   //Event Controller
-	   FoodController foodController;
+	   public FoodController foodController;
 	   
 	   
 	   /**
@@ -145,9 +145,30 @@ public class FoodFrame extends JFrame{
 	      orderPanel.setBounds(48, 67, 630, 583);
 	      orderPanel.setLayout(new BorderLayout(0, 0));
 	      //table
-	      String[] header = {" ","No","카테고리","메뉴","수량","가격","재고"};
-	      String[][] contents = null;
-	      DefaultTableModel tM = new DefaultTableModel(contents, header);
+	      //컬럼 명
+	      Vector<String> column1 = new Vector<String>();
+	      column1.addElement("No");
+	      column1.addElement("카테고리");
+	      column1.addElement("메뉴");
+	      column1.addElement("수량");
+	      column1.addElement("가격");
+	      column1.addElement("재고");
+	      
+	      //추가한 컬럼명으로 모델 생성하고 인자 넣음
+	      DefaultTableModel tM = new DefaultTableModel(column1, 0);
+	      
+	      //데이터 넣음
+	      //컬럼이 6개임으로 6개 데이터 들어감. 아무리 더 추가해봤자 안들어감.
+	      Vector<String> row = new Vector<String>();
+	      row.addElement("11");
+	      row.addElement("12");
+	      row.addElement("13");
+	      row.addElement("14");
+	      row.addElement("15");
+	      row.addElement("16");
+	      tM.addRow(row);
+	      
+	      //JTable에 넣음.
 	      JTable listT = new JTable(tM);
 	      listT.setFillsViewportHeight(true);
 	      
@@ -221,11 +242,19 @@ public class FoodFrame extends JFrame{
 	      }
 	      //SnackView
 	      int snacklen = sv.snackbtn.length;
-	      for(int i=0;i<drinklen;i++) {
-	    	   dv.drinkbtn[i].addActionListener(foodController);
+	      for(int i=0;i<snacklen;i++) {
+	    	   sv.snackbtn[i].addActionListener(foodController);
 	      }
 	      //NoodleView
+	      int noodlelen = nv.noodlebtn.length;
+	      for(int i=0;i<noodlelen;i++) {
+	    	   nv.noodlebtn[i].addActionListener(foodController);
+	      }
 	      //InstFoodView
+	      int instlen = ifv.instfoodbtn.length;
+	      for(int i=0;i<instlen;i++) {
+	    	  ifv.instfoodbtn[i].addActionListener(foodController);
+	      }
 	      ////////////////////////////////
 	   }
 	    
