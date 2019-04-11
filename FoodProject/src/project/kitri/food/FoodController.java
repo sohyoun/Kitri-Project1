@@ -3,6 +3,8 @@ package project.kitri.food;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import project.kitri.service.FoodService;
+
 public class FoodController implements ActionListener{
 	
 	FoodFrame foodFrame;

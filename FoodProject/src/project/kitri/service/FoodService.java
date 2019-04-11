@@ -1,7 +1,8 @@
-package project.kitri.food;
+package project.kitri.service;
+
+import project.kitri.food.FoodController;
 
 public class FoodService {
-	
 	FoodController foodController;
 	
 	public FoodService(FoodController foodController) {
@@ -31,5 +32,4 @@ public class FoodService {
 	public void completeOrder() {
 		
 	}
-
 }
