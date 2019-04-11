@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import project.kitri.service.FoodService;
+import project.kitri.service.FoodServiceImpl;
 
 public class FoodController implements ActionListener{
 	
@@ -12,7 +13,7 @@ public class FoodController implements ActionListener{
 	
 	public FoodController(FoodFrame foodFrame) {
 		this.foodFrame = foodFrame;
-		foodService = new FoodService(this);
+		foodService = new FoodServiceImpl(this);
 		
 	}
 

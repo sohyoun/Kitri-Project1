@@ -4,10 +4,12 @@ package project.kitri.data;
 
 public class FoodDto {
 
+	public OrderHstrDto orderHstrDto = new OrderHstrDto();
+	public StockDto stockDto = new StockDto();
 	private String foodNum; // 음식코드
 	private String foodCtg; // 음식종류
 	private String foodName; // 음식이름
-	private String foodPrice; // 음식가격
+	private int foodPrice; // 음식가격
 
 	public String getFoodNum() {
 		return foodNum;
@@ -33,11 +35,11 @@ public class FoodDto {
 		this.foodName = foodName;
 	}
 
-	public String getFoodPrice() {
+	public int getFoodPrice() {
 		return foodPrice;
 	}
 
-	public void setFoodPrice(String foodPrice) {
+	public void setFoodPrice(int foodPrice) {
 		this.foodPrice = foodPrice;
 	}
 

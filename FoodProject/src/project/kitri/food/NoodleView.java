@@ -1,5 +1,7 @@
 package project.kitri.food;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -13,20 +15,19 @@ public class NoodleView extends JPanel {
 	public NoodleView() {
 		setLayout(new GridLayout(5, 5));
 		setBounds(713, 123, 656, 583);
-		JButton noodle1 = new JButton("½Å¶ó¸é");
-		add(noodle1);
-		JButton noodle2 = new JButton("½Å¶ó¸éºí·¢");
-		add(noodle2);
-		JButton noodle3 = new JButton("À°°èÀå");
-		add(noodle3);
-		JButton noodle4 = new JButton("¿ÀÂ¡¾îÂ«»Í");
-		add(noodle4);
-		JButton noodle5 = new JButton("Æ¢±è¿ìµ¿");
-		add(noodle5);
-		JButton noodle6 = new JButton("Áø¶ó¸é");
-		add(noodle6);
-		JButton noodle7 = new JButton("¿Õ¶Ñ²±");
-		add(noodle7);
+		String bt[] = new String[25];
+		//bt¾ÈÀÇ ³»¿ë : Food ClassÀÇ Food_Name
+		bt[0] = "½Å¶ó¸é";
+		bt[1] = "Áø¶ó¸é";
+		JButton noodlebtn[] = new JButton[25];
+		int len = noodlebtn.length;
+		for(int i=0; i<len; i++) {
+			noodlebtn[i] = new JButton(bt[i]);
+			noodlebtn[i].setFont(new Font("±¼¸²", Font.BOLD, 14));
+			noodlebtn[i].setForeground(Color.WHITE);
+			noodlebtn[i].setBackground(new Color(52, 152, 219));
+			add(noodlebtn[i]);
+		}
 		
 		
 	}

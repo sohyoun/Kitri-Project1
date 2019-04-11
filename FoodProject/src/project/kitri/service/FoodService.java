@@ -2,34 +2,18 @@ package project.kitri.service;
 
 import project.kitri.food.FoodController;
 
-public class FoodService {
-	FoodController foodController;
+public interface FoodService {
 	
-	public FoodService(FoodController foodController) {
-		this.foodController = foodController;
-	}
 
-	public void plus() {
-		
-	}
+	public void plus();
 
-	public void minus() {
-	
-	}
+	public void minus();
 
-	public void oneCancel() {
-	
-	}
+	public void oneCancel();
 
-	public void totalCancel() {
+	public void totalCancel();
 
-	}
+	public void cancelOrder();
 
-	public void cancelOrder() {
-	
-	}
-
-	public void completeOrder() {
-		
-	}
+	public void completeOrder();
 }

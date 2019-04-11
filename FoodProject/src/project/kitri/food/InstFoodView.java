@@ -1,5 +1,7 @@
 package project.kitri.food;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -13,20 +15,19 @@ public class InstFoodView extends JPanel {
 	public InstFoodView() {
 		setLayout(new GridLayout(5, 5));
 		setBounds(713, 123, 656, 583);
-		JButton instfood1 = new JButton("³¿ºñ¶ó¸é");
-		add(instfood1);
-		JButton instfood2 = new JButton("ººÀ½¹ä");
-		add(instfood2);
-		JButton instfood3 = new JButton("Â¥ÆÄ°ÔÆ¼");
-		add(instfood3);
-		JButton instfood4 = new JButton("ÇÜ¹ö°Å");
-		add(instfood4);
-		JButton instfood5 = new JButton("ÇÇÀÚ");
-		add(instfood5);
-		JButton instfood6 = new JButton("Ä¡Å²");
-		add(instfood6);
-		JButton instfood7 = new JButton("°¨ÀÚÆ¢±è");
-		add(instfood7);
+		String bt[] = new String[25];
+		//bt¾ÈÀÇ ³»¿ë : Food ClassÀÇ Food_Name
+		bt[0] = "ººÀ½¹ä";
+		bt[1] = "³¿ºñ¶ó¸é";
+		JButton instfoodbtn[] = new JButton[25];
+		int len = instfoodbtn.length;
+		for(int i=0; i<len; i++) {
+			instfoodbtn[i] = new JButton(bt[i]);
+			instfoodbtn[i].setFont(new Font("±¼¸²", Font.BOLD, 14));
+			instfoodbtn[i].setForeground(Color.WHITE);
+			instfoodbtn[i].setBackground(new Color(52, 152, 219));
+			add(instfoodbtn[i]);
+		}
 	}
 
 }

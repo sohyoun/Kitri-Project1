@@ -146,8 +146,7 @@ public class FoodFrame extends JFrame{
 	      orderPanel.setLayout(new BorderLayout(0, 0));
 	      //table
 	      String[] header = {" ","No","카테고리","메뉴","수량","가격","재고"};
-	      String[][] contents = {{" ","1","음료","카페모카","2","3500","-"},
-	    		  				{" ","2","라면","신라면","1","2000","30"}};
+	      String[][] contents = null;
 	      DefaultTableModel tM = new DefaultTableModel(contents, header);
 	      JTable listT = new JTable(tM);
 	      listT.setFillsViewportHeight(true);
@@ -214,8 +213,20 @@ public class FoodFrame extends JFrame{
 	      
 	      cancelBtn.addActionListener(foodController);
 	      completeBtn.addActionListener(foodController);
-	      //각 메뉴들도 다....?!
-
+	      
+	      //DrinkView 
+	      int drinklen = dv.drinkbtn.length;
+	      for(int i=0;i<drinklen;i++) {
+	    	   dv.drinkbtn[i].addActionListener(foodController);
+	      }
+	      //SnackView
+	      int snacklen = sv.snackbtn.length;
+	      for(int i=0;i<drinklen;i++) {
+	    	   dv.drinkbtn[i].addActionListener(foodController);
+	      }
+	      //NoodleView
+	      //InstFoodView
+	      ////////////////////////////////
 	   }
 	    
 	   
