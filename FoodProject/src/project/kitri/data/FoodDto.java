@@ -5,7 +5,6 @@ package project.kitri.data;
 public class FoodDto {
 
 	public OrderHstrDto orderHstrDto = new OrderHstrDto();
-	public StockDto stockDto = new StockDto();
 	private String foodNum; // 음식코드
 	private String foodCtg; // 음식종류
 	private String foodName; // 음식이름

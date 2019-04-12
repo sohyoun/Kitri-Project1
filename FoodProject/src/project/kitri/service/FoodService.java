@@ -45,40 +45,27 @@ public class FoodService {
 		
 	}
 
-	public void drinkProcess(String bt) {// drink중의 버튼 눌렀을때
-				//db에서 bt와 이름이 같은 row의 정보 빼오기
-				FoodDao.getInstance().selectFood(bt);
-				//select ~~~
-				//from food,order,stock
-				//where food_name = bt;
-				
-				//받아온 정보를 Jtable에 붙이기
-				FoodDao.getInstance().getFoodList();
-				Vector row = new Vector();
-				
-				row.addElement(FoodDao.getInstance().getFoodList().get(0));
-				row.addElement(FoodDao.getInstance().getFoodList().get(1));
-				row.addElement(FoodDao.getInstance().getFoodList().get(2));
-				row.addElement(FoodDao.getInstance().getFoodList().get(3));
-				row.addElement(FoodDao.getInstance().getFoodList().get(4));
-				row.addElement(FoodDao.getInstance().getFoodList().get(5));
-				System.out.println(row);
-				//테이블에 붙이기.....
-				//setdataVector 갱신하기
-				//addrow 붙이기
-//				JTable listT = new JTable(tM);
-//			      listT.setFillsViewportHeight(true);
-	}
-
-	public void snackProcess() {
+	public void foodProccess(String btname) {//food메뉴 버튼 눌렀을 때00000000000
+		//db에서 bt와 이름이 같은 row의 정보 빼오기
+		FoodDto food1 = FoodDao.getInstance().selectFood(btname);		
+		int count =foodController.foodFrame.tM.getRowCount();
 		
-	}
-
-	public void noodleProcess() {
+		//받아온 정보를 Vector로 만들기 
+		Vector row = new Vector();
+		row.addElement(count+1);
+		row.addElement(food1.getFoodCtg());
+		row.addElement(food1.getFoodName());
+		row.addElement(1);//주문수량
+		row.addElement(food1.getFoodPrice());
+//		System.out.println(row);
 		
-	}
-
-	public void instFoodProcess() {
+		//받아온 정보가 Jtable에 있을 경우 주문 수량 올리기!!!!
+		//JTable을 한줄씩 for문 돌리기.
+		
+		
+		
+		//Jtable에 추가
+		foodController.foodFrame.tM.addRow(row);
 		
 	}
 }

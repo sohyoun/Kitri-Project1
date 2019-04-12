@@ -12,8 +12,8 @@ import java.util.Vector;
 
 public class FoodFrame extends JFrame{
 
-	   JPanel contentPane = new JPanel();;//기본panel
-	   JPanel mainPanel = new JPanel();//main panel
+	   public JPanel contentPane = new JPanel();;//기본panel
+	   public JPanel mainPanel = new JPanel();//main panel
 	   private JPanel panel_1 = new JPanel();//화면첫줄panel
 	   private JLabel titleL;//화면첫줄panel의 title,date,time
 	   private JLabel dateL;
@@ -21,10 +21,10 @@ public class FoodFrame extends JFrame{
 	   
 	   //////////////////////////////////////////////
 	   //카테고리 버튼들
-	   JButton drinkBtn = new JButton("\uC74C\uB8CC");
-	   JButton snackBtn = new JButton("\uACFC\uC790");
-	   JButton noodleBtn = new JButton("\uB77C\uBA74");
-	   JButton instfoodBtn = new JButton("\uC74C\uC2DD");
+	   public JButton drinkBtn = new JButton("\uC74C\uB8CC");
+	   public JButton snackBtn = new JButton("\uACFC\uC790");
+	   public JButton noodleBtn = new JButton("\uB77C\uBA74");
+	   public JButton instfoodBtn = new JButton("\uC74C\uC2DD");
 	   
 	   //메뉴판 panel
 	   JPanel menuPanel;
@@ -41,8 +41,11 @@ public class FoodFrame extends JFrame{
 	   JButton completeBtn = new JButton("\uC644\uB8CC");
 	   ////////////////////////////////////
 	   //주문list
-	   JPanel orderPanel = new JPanel();
-	   
+	   public JPanel orderPanel = new JPanel();
+	   public JScrollPane tableP;
+	   public JTable listT;
+	   public DefaultTableModel tM;
+	   ///////////////////////////////////////////
 	   //총금액 textfield
 	   JTextField textField;
 	   JTextField sumprice;
@@ -94,20 +97,28 @@ public class FoodFrame extends JFrame{
 	      mainPanel.setBackground(Color.WHITE);
 	      mainPanel.setBounds(0, 36, 1494, 835); // 이 크기대로 패널 생성해서 cardLayout으로 구성~~
 	      mainPanel.setLayout(null);
+	      drinkBtn.setForeground(Color.WHITE);
+	      drinkBtn.setBackground(Color.DARK_GRAY);
 	      //////////////////////////////////////////////
 	      //카테고리 버튼들
-	      drinkBtn.setBounds(1374, 67, 97, 85);
+	      drinkBtn.setBounds(1374, 71, 97, 50);
 	      mainPanel.add(drinkBtn);
-	      drinkBtn.setFont(new Font("굴림", Font.BOLD, 20));
-	      snackBtn.setBounds(1374, 162, 97, 85);
+	      drinkBtn.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+	      snackBtn.setForeground(Color.WHITE);
+	      snackBtn.setBackground(Color.DARK_GRAY);
+	      snackBtn.setBounds(1374, 131, 97, 50);
 	      mainPanel.add(snackBtn);
-	      snackBtn.setFont(new Font("굴림", Font.BOLD, 20));
-	      noodleBtn.setBounds(1374, 257, 97, 85);
+	      snackBtn.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+	      noodleBtn.setForeground(Color.WHITE);
+	      noodleBtn.setBackground(Color.DARK_GRAY);
+	      noodleBtn.setBounds(1374, 191, 97, 50);
 	      mainPanel.add(noodleBtn);
-	      noodleBtn.setFont(new Font("굴림", Font.BOLD, 20));
-	      instfoodBtn.setBounds(1374, 352, 97, 85);
+	      noodleBtn.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+	      instfoodBtn.setForeground(Color.WHITE);
+	      instfoodBtn.setBackground(Color.DARK_GRAY);
+	      instfoodBtn.setBounds(1374, 251, 97, 50);
 	      mainPanel.add(instfoodBtn);
-	      instfoodBtn.setFont(new Font("굴림", Font.BOLD, 20));
+	      instfoodBtn.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 	      ///////////////////////////////////////////////
 	      //menu판 버튼들 들어가는 panel : menuPanel
 	      menuPanel = new JPanel();
@@ -130,21 +141,22 @@ public class FoodFrame extends JFrame{
 	      //////////////////////////////////////////////
 	      //주문 취소,완료 버튼
 	      cancelBtn.setForeground(Color.WHITE);
-	      cancelBtn.setBackground(Color.DARK_GRAY);
+	      cancelBtn.setBackground(new Color(52, 152, 219));
 	      cancelBtn.setBounds(883, 680, 235, 75);
-	      cancelBtn.setFont(new Font("굴림", Font.BOLD, 30));
+	      cancelBtn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 	      mainPanel.add(cancelBtn);
 	      
 	      completeBtn.setForeground(Color.WHITE);
-	      completeBtn.setBackground(Color.DARK_GRAY);
+	      completeBtn.setBackground(new Color(52, 152, 219));
 	      completeBtn.setBounds(1138, 680, 235, 75);
-	      completeBtn.setFont(new Font("굴림", Font.BOLD, 30));
+	      completeBtn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 	      mainPanel.add(completeBtn);
 	      //////////////////////////////////////
 	      //주문list
 	      orderPanel.setBounds(48, 67, 630, 583);
 	      orderPanel.setLayout(new BorderLayout(0, 0));
-	      //table
+	      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	      //Jtable
 	      //컬럼 명
 	      Vector<String> column1 = new Vector<String>();
 	      column1.addElement("No");
@@ -152,41 +164,41 @@ public class FoodFrame extends JFrame{
 	      column1.addElement("메뉴");
 	      column1.addElement("수량");
 	      column1.addElement("가격");
-	      column1.addElement("재고");
 	      
 	      //추가한 컬럼명으로 모델 생성하고 인자 넣음
-	      DefaultTableModel tM = new DefaultTableModel(column1, 0);
+	      tM = new DefaultTableModel(column1, 0);
 	      
 	      //데이터 넣음
-	      //컬럼이 6개임으로 6개 데이터 들어감. 아무리 더 추가해봤자 안들어감.
-	      Vector<String> row = new Vector<String>();
-	      row.addElement("11");
-	      row.addElement("12");
-	      row.addElement("13");
-	      row.addElement("14");
-	      row.addElement("15");
-	      row.addElement("16");
-	      tM.addRow(row);
+	      //컬럼이 5개임으로 5개 데이터 들어감. 아무리 더 추가해봤자 안들어감.
+//	      Vector<String> row = new Vector<String>();
+//	      row.addElement("11");
+//	      row.addElement("12");
+//	      row.addElement("13");
+//	      row.addElement("14");
+//	      row.addElement("15");
+//	      tM.addRow(row);
 	      
 	      //JTable에 넣음.
-	      JTable listT = new JTable(tM);
+	      listT = new JTable(tM);
 	      listT.setFillsViewportHeight(true);
 	      
 	      //table 부착
-	      JScrollPane tableP = new JScrollPane(listT);
+	      tableP = new JScrollPane(listT);
 	      orderPanel.add(tableP);
 	      
 	      
 	      mainPanel.add(orderPanel);
-	      ///////////////////////////////////////////////////////
+	      ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	      
 	      textField = new JTextField();
+	      textField.setBackground(new Color(52, 152, 219));
+	      textField.setForeground(Color.WHITE);
 	      textField.setHorizontalAlignment(SwingConstants.CENTER);
 	      textField.setText("\uCD1D\uAE08\uC561");
 	      textField.setBounds(48, 681, 225, 37);
 	      mainPanel.add(textField);
 	      textField.setColumns(10);
-	      textField.setFont(new Font("굴림", Font.BOLD, 30));
+	      textField.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 	      
 	      sumprice = new JTextField();
 	      sumprice.setText("0");
@@ -194,20 +206,28 @@ public class FoodFrame extends JFrame{
 	      sumprice.setBounds(48, 718, 225, 37);
 	      mainPanel.add(sumprice);
 	      sumprice.setColumns(10);
-	      sumprice.setFont(new Font("굴림", Font.BOLD, 30));
+	      sumprice.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+	      plusBtn.setForeground(Color.WHITE);
+	      plusBtn.setBackground(Color.DARK_GRAY);
 	      
 	      plusBtn.setBounds(285, 680, 75, 75);
 	      mainPanel.add(plusBtn);
-	      plusBtn.setFont(new Font("굴림", Font.BOLD, 40));
+	      plusBtn.setFont(new Font("맑은 고딕", Font.BOLD, 40));
+	      minusBtn.setForeground(Color.WHITE);
+	      minusBtn.setBackground(Color.DARK_GRAY);
 	      minusBtn.setBounds(372, 680, 75, 75);
 	      mainPanel.add(minusBtn);
-	      minusBtn.setFont(new Font("굴림", Font.BOLD, 40));
+	      minusBtn.setFont(new Font("맑은 고딕", Font.BOLD, 40));
+	      oneCancel.setForeground(Color.WHITE);
+	      oneCancel.setBackground(Color.DARK_GRAY);
 	      oneCancel.setBounds(459, 680, 75, 75);
 	      mainPanel.add(oneCancel);
-	      oneCancel.setFont(new Font("굴림", Font.BOLD, 30));
+	      oneCancel.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+	      totalCancel.setForeground(Color.WHITE);
+	      totalCancel.setBackground(Color.DARK_GRAY);
 	      totalCancel.setBounds(546, 680, 132, 75);
 	      mainPanel.add(totalCancel);
-	      totalCancel.setFont(new Font("굴림", Font.BOLD, 20));
+	      totalCancel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 	      ////////////////////////////////////
 	     
 	      contentPane.add(mainPanel);

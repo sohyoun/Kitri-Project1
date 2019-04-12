@@ -41,31 +41,8 @@ public class FoodController implements ActionListener{
 	      } else if(ob == foodFrame.completeBtn) {
 	    	  foodService.completeOrder();
 	      } else {
-	    	  for(int i=0; i <foodFrame.dv.drinkbtn.length; i++) {
-	    		  if(ob == foodFrame.dv.drinkbtn[i]) {
-	    			  foodService.drinkProcess(foodFrame.dv.bt[i]);
-			    	  break;
-			      }
-	    	  }
-	    	  for(int i=0; i <foodFrame.sv.snackbtn.length; i++) {
-	    		  if(ob == foodFrame.sv.snackbtn[i]) {
-	    			  foodService.snackProcess();
-			    	  break;
-			      }
-	    	  }
-	    	  for(int i=0; i <foodFrame.nv.noodlebtn.length; i++) {
-	    		  if(ob == foodFrame.nv.noodlebtn[i]) {
-	    			  foodService.noodleProcess();
-			    	  break;
-			      }
-	    	  }
-	    	  for(int i=0; i <foodFrame.ifv.instfoodbtn.length; i++) {
-	    		  if(ob == foodFrame.ifv.instfoodbtn[i]) {
-	    			  foodService.instFoodProcess();
-			    	  break;
-			      }
-	    	  }
-	    	  
+	    	  foodService.foodProccess(e.getActionCommand());
+	    	  System.out.println(e.ACTION_LAST);
 	      }
 		
 	}

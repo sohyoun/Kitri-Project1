@@ -1,9 +1,13 @@
 package project.kitri.food;
 
 import java.awt.GridLayout;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import project.kitri.service.FoodDao;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -16,14 +20,14 @@ public class SnackView extends JPanel {
 	public SnackView() {
 		setLayout(new GridLayout(5, 5, 1, 1));
 		setBounds(713, 123, 656, 583);
-		bt = new String[25];
-		//bt¾ÈÀÇ ³»¿ë : Food ClassÀÇ Food_Name
-		bt[0] = "²¿ºÏÄ¨";
-		bt[1] = "»õ¿ì±ø";
-		snackbtn = new JButton[25];
-		int len = snackbtn.length;
+		
+		String foodctg = "°úÀÚ";//??????????
+		List<String> foodnamelist = FoodDao.getInstance().getFoodnamelist(foodctg);
+		
+		int len = foodnamelist.size();
+		snackbtn = new JButton[len];
 		for(int i=0; i<len; i++) {
-			snackbtn[i] = new JButton(bt[i]);
+			snackbtn[i] = new JButton(foodnamelist.get(i));
 			snackbtn[i].setFont(new Font("±¼¸²", Font.BOLD, 14));
 			snackbtn[i].setForeground(Color.WHITE);
 			snackbtn[i].setBackground(new Color(52, 152, 219));

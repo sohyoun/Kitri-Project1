@@ -1,6 +1,8 @@
 package project.kitri.service;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import project.kitri.data.FoodDto;
@@ -75,11 +77,9 @@ public class FoodDao {
 		try {
 			conn = DriverManager.getConnection(url, user, pw);
 			
-			String sql = "select food_ctg, food_name , order_amt, food_price, rest_amt "
-					+ "from food, order_hstr, stock "
-					+ "where food.food_num = order_hstr.food_num "
-					+ "and food.food_ctg = stock.food_ctg "
-					+ "and food.food_name = ?";
+			String sql = "select food_ctg, food_name, food_price "
+					+ "from food "
+					+ "where food.food_name = ?";
 			
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, food_name);//?의 숫자번쨰
@@ -90,9 +90,7 @@ public class FoodDao {
 				foodDto.setFoodName(rs.getString("food_name"));
 				foodDto.setFoodPrice(rs.getInt("food_price"));
 				
-				foodDto.orderHstrDto.setOrderAmt(rs.getInt("order_amt"));
 				
-				foodDto.stockDto.setRestAmt(rs.getString("rest_amt"));
 			}
 			
 			
@@ -113,6 +111,47 @@ public class FoodDao {
 		return foodDto;
 	}
 	
+	//food_name 리스트 출력 (카테고리별)
+		public List<String> getFoodnamelist(String foodctg) {
+			List<String> list = new ArrayList<String>();
+			
+			conn = null;					//연결
+			PreparedStatement stmt = null;	//명령
+			rs = null;	
+			
+			try {
+				conn = DriverManager.getConnection(url, user, pw);
+				
+				String sql= "select food_name from food "
+							+ "where food_ctg = ?";
+						
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, foodctg);
+				rs = stmt.executeQuery();
+				
+				while(rs.next()) {
+					String food_name = rs.getString("food_name");
+					list.add(food_name);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(rs != null)
+						rs.close();
+					if(stmt != null)
+						stmt.close();
+					if(conn != null)
+						conn.close();
+				} catch (SQLException e) {
+					System.out.println("해제 실패" + e.getStackTrace());
+				}
+			}
+			return list ;
+		}
+	//
+	
 	//리스트 출력
 	public Vector getFoodList() {
 		Vector data = new Vector();
@@ -124,10 +163,9 @@ public class FoodDao {
 		try {
 			conn = DriverManager.getConnection(url, user, pw);
 			
-			String sql= "select food_ctg, food_name , order_amt, food_price, rest_amt "
-					+ "from food, order_hstr, stock "
-					+ "where food.food_num = order_hstr.food_num "
-					+ "and food.food_ctg = stock.food_ctg ";
+			String sql= "select food_ctg, food_name , order_amt, food_price "
+					+ "from food, order_hstr "
+					+ "where food.food_num = order_hstr.food_num ";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
@@ -137,7 +175,6 @@ public class FoodDao {
 				String food_name = rs.getString("food_name");
 				String order_amt = rs.getString("order_amt");
 				String food_price = rs.getString("food_price");
-				String rest_amt = rs.getString("rest_amt");
 				
 				Vector row = new Vector();
 				
@@ -146,7 +183,6 @@ public class FoodDao {
 				row.add(food_name);
 				row.add(order_amt);
 				row.add(food_price);
-				row.add(rest_amt);
 				
 				data.add(row);
 			}
