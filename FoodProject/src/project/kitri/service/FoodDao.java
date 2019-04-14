@@ -150,60 +150,61 @@ public class FoodDao {
 			}
 			return list ;
 		}
-	//
-	
-	//리스트 출력
-	public Vector getFoodList() {
-		Vector data = new Vector();
 		
-		conn = null;					//연결
-		PreparedStatement stmt = null;	//명령
-		rs = null;	
-		
-		try {
-			conn = DriverManager.getConnection(url, user, pw);
-			
-			String sql= "select food_ctg, food_name , order_amt, food_price "
-					+ "from food, order_hstr "
-					+ "where food.food_num = order_hstr.food_num ";
-			stmt = conn.prepareStatement(sql);
-			rs = stmt.executeQuery();
-			
-			while(rs.next()) {
-				String no="";
-				String food_ctg = rs.getString("food_ctg");
-				String food_name = rs.getString("food_name");
-				String order_amt = rs.getString("order_amt");
-				String food_price = rs.getString("food_price");
-				
-				Vector row = new Vector();
-				
-				row.add(no);///////////????????
-				row.add(food_ctg);
-				row.add(food_name);
-				row.add(order_amt);
-				row.add(food_price);
-				
-				data.add(row);
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null)
-					rs.close();
-				if(stmt != null)
-					stmt.close();
-				if(conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				System.out.println("해제 실패" + e.getStackTrace());
-			}
-		}
-		return data;
-	}
 	
-	//update 수량 고치기 / 재고 고치기
+		
+//	//리스트 출력
+//	public Vector getFoodList() {
+//		Vector data = new Vector();
+//		
+//		conn = null;					//연결
+//		PreparedStatement stmt = null;	//명령
+//		rs = null;	
+//		
+//		try {
+//			conn = DriverManager.getConnection(url, user, pw);
+//			
+//			String sql= "select food_ctg, food_name , order_amt, food_price "
+//					+ "from food, order_hstr "
+//					+ "where food.food_num = order_hstr.food_num ";
+//			stmt = conn.prepareStatement(sql);
+//			rs = stmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				String no="";
+//				String food_ctg = rs.getString("food_ctg");
+//				String food_name = rs.getString("food_name");
+//				String order_amt = rs.getString("order_amt");
+//				String food_price = rs.getString("food_price");
+//				
+//				Vector row = new Vector();
+//				
+//				row.add(no);///////////????????
+//				row.add(food_ctg);
+//				row.add(food_name);
+//				row.add(order_amt);
+//				row.add(food_price);
+//				
+//				data.add(row);
+//			}
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if(rs != null)
+//					rs.close();
+//				if(stmt != null)
+//					stmt.close();
+//				if(conn != null)
+//					conn.close();
+//			} catch (SQLException e) {
+//				System.out.println("해제 실패" + e.getStackTrace());
+//			}
+//		}
+//		return data;
+//	}
+	
+	
 
 }

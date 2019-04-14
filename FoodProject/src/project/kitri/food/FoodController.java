@@ -42,7 +42,7 @@ public class FoodController implements ActionListener{
 	    	  foodService.completeOrder();
 	      } else {
 	    	  foodService.foodProccess(e.getActionCommand());
-	    	  System.out.println(e.ACTION_LAST);
+//	    	  System.out.println(e.ACTION_LAST);
 	      }
 		
 	}
