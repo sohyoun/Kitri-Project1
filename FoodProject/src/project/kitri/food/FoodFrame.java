@@ -48,13 +48,14 @@ public class FoodFrame extends JFrame{
 	   ///////////////////////////////////////////
 	   //총금액 textfield
 	   JTextField textField;
-	   JTextField sumprice;
+	   public JTextField sumprice;
 	   //주문수정버튼
 	   JButton plusBtn = new JButton("+");
 	   JButton minusBtn = new JButton("-");
 	   JButton oneCancel = new JButton("X");
 	   JButton totalCancel = new JButton("\uC804\uCCB4 \uCDE8\uC18C");
-	   
+	   /////////////////
+	   public JRadioButton ice;
 	   ///////////////////////////////////////
 	   //Event Controller
 	   public FoodController foodController;
@@ -142,13 +143,13 @@ public class FoodFrame extends JFrame{
 	      //주문 취소,완료 버튼
 	      cancelBtn.setForeground(Color.WHITE);
 	      cancelBtn.setBackground(new Color(52, 152, 219));
-	      cancelBtn.setBounds(883, 680, 235, 75);
+	      cancelBtn.setBounds(883, 708, 235, 47);
 	      cancelBtn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 	      mainPanel.add(cancelBtn);
 	      
 	      completeBtn.setForeground(Color.WHITE);
 	      completeBtn.setBackground(new Color(52, 152, 219));
-	      completeBtn.setBounds(1138, 680, 235, 75);
+	      completeBtn.setBounds(1138, 708, 235, 47);
 	      completeBtn.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 	      mainPanel.add(completeBtn);
 	      //////////////////////////////////////
@@ -160,6 +161,7 @@ public class FoodFrame extends JFrame{
 	      //컬럼 명
 	      Vector<String> column1 = new Vector<String>();
 	      column1.addElement("No");
+
 	      column1.addElement("카테고리");
 	      column1.addElement("메뉴");
 	      column1.addElement("수량");
@@ -168,15 +170,6 @@ public class FoodFrame extends JFrame{
 	      //추가한 컬럼명으로 모델 생성하고 인자 넣음
 	      tM = new DefaultTableModel(column1, 0);
 	      
-	      //데이터 넣음
-	      //컬럼이 5개임으로 5개 데이터 들어감. 아무리 더 추가해봤자 안들어감.
-//	      Vector<String> row = new Vector<String>();
-//	      row.addElement("11");
-//	      row.addElement("12");
-//	      row.addElement("13");
-//	      row.addElement("14");
-//	      row.addElement("15");
-//	      tM.addRow(row);
 	      
 	      //JTable에 넣음.
 	      listT = new JTable(tM);
@@ -199,7 +192,7 @@ public class FoodFrame extends JFrame{
 	      mainPanel.add(textField);
 	      textField.setColumns(10);
 	      textField.setFont(new Font("맑은 고딕", Font.BOLD, 25));
-	      
+	      //총금액
 	      sumprice = new JTextField();
 	      sumprice.setText("0");
 	      sumprice.setHorizontalAlignment(SwingConstants.CENTER);
@@ -228,6 +221,12 @@ public class FoodFrame extends JFrame{
 	      totalCancel.setBounds(546, 680, 132, 75);
 	      mainPanel.add(totalCancel);
 	      totalCancel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+	      //////////////////////////////////////
+	      //ice 버튼
+	      ice = new JRadioButton("\uC544\uC774\uC2A4");
+	      ice.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+	      ice.setBounds(1252, 656, 121, 33);
+	      mainPanel.add(ice);
 	      ////////////////////////////////////
 	     
 	      contentPane.add(mainPanel);
@@ -255,6 +254,7 @@ public class FoodFrame extends JFrame{
 	      cancelBtn.addActionListener(foodController);
 	      completeBtn.addActionListener(foodController);
 	      
+	      ice.addActionListener(foodController);
 	      //DrinkView 
 	      int drinklen = dv.drinkbtn.length;
 	      for(int i=0;i<drinklen;i++) {
@@ -275,6 +275,10 @@ public class FoodFrame extends JFrame{
 	      for(int i=0;i<instlen;i++) {
 	    	  ifv.instfoodbtn[i].addActionListener(foodController);
 	      }
+	      
+	      
+	     
+	      
 	      ////////////////////////////////
 	   }
 	    
@@ -295,6 +299,4 @@ public class FoodFrame extends JFrame{
 	         }
 	      });
 	   }
-
-	   
 }

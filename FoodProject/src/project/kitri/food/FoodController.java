@@ -21,12 +21,20 @@ public class FoodController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object ob = e.getSource();
 	      if(ob == foodFrame.drinkBtn) {
+	    	  foodFrame.ice.setVisible(true);
+	    	  foodFrame.ice.setSelected(false);
 	    	  foodFrame.card.show(foodFrame.menuPanel, "drinkview");
 	      } else if(ob == foodFrame.snackBtn) {
+	    	  foodFrame.ice.setVisible(false);
+	    	  foodFrame.ice.setSelected(false);
 	    	  foodFrame.card.show(foodFrame.menuPanel, "snackview");
 	      } else if(ob == foodFrame.noodleBtn) {
+	    	  foodFrame.ice.setVisible(false);
+	    	  foodFrame.ice.setSelected(false);
 	    	  foodFrame.card.show(foodFrame.menuPanel, "noodleview");
 	      } else if(ob == foodFrame.instfoodBtn) {
+	    	  foodFrame.ice.setVisible(false);
+	    	  foodFrame.ice.setSelected(false);
 	    	  foodFrame.card.show(foodFrame.menuPanel, "instfoodview");
 	      } else if(ob == foodFrame.plusBtn) {
 	    	  foodService.plus();
@@ -39,10 +47,13 @@ public class FoodController implements ActionListener{
 	      } else if(ob == foodFrame.cancelBtn) {
 	    	  foodService.cancelOrder();
 	      } else if(ob == foodFrame.completeBtn) {
-	    	  foodService.completeOrder();
+	    	  String memberid ="1"; //ÀÓÀÇ°ª
+	    	  foodService.completeOrder(memberid);
+	      } else if(ob == foodFrame.ice) {
+	    	  foodService.icedrink();
 	      } else {
 	    	  foodService.foodProccess(e.getActionCommand());
-//	    	  System.out.println(e.ACTION_LAST);
+//	    	  System.out.println(e.getActionCommand());
 	      }
 		
 	}
