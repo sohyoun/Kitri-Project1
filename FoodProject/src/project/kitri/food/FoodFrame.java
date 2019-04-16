@@ -54,8 +54,7 @@ public class FoodFrame extends JFrame{
 	   JButton minusBtn = new JButton("-");
 	   JButton oneCancel = new JButton("X");
 	   JButton totalCancel = new JButton("\uC804\uCCB4 \uCDE8\uC18C");
-	   /////////////////
-	   public JRadioButton ice;
+	
 	   ///////////////////////////////////////
 	   //Event Controller
 	   public FoodController foodController;
@@ -169,6 +168,7 @@ public class FoodFrame extends JFrame{
 	      
 	      //추가한 컬럼명으로 모델 생성하고 인자 넣음
 	      tM = new DefaultTableModel(column1, 0);
+//	      boolean tt = tM.isCellEditable(0, column1);
 	      
 	      
 	      //JTable에 넣음.
@@ -222,12 +222,7 @@ public class FoodFrame extends JFrame{
 	      mainPanel.add(totalCancel);
 	      totalCancel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 	      //////////////////////////////////////
-	      //ice 버튼
-	      ice = new JRadioButton("\uC544\uC774\uC2A4");
-	      ice.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-	      ice.setBounds(1252, 656, 121, 33);
-	      mainPanel.add(ice);
-	      ////////////////////////////////////
+	      
 	     
 	      contentPane.add(mainPanel);
 	      
@@ -254,7 +249,6 @@ public class FoodFrame extends JFrame{
 	      cancelBtn.addActionListener(foodController);
 	      completeBtn.addActionListener(foodController);
 	      
-	      ice.addActionListener(foodController);
 	      //DrinkView 
 	      int drinklen = dv.drinkbtn.length;
 	      for(int i=0;i<drinklen;i++) {
@@ -282,6 +276,7 @@ public class FoodFrame extends JFrame{
 	      ////////////////////////////////
 	   }
 	    
+	  
 	   
 
 	   /**
