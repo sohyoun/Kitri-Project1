@@ -6,10 +6,11 @@ import java.util.Date;
 
 public class UseHstrDto {
 
-	private String memberId;	//회원ID
-	private String payNum;		//결제번호
-	private Date stTime;		//시작시간
-	private Date eTime;			//종료시간
+	private String memberId; // 회원ID
+	private String payNum; // 결제번호
+	private Date stTime; // 시작시간
+	private Date eTime; // 종료시간
+	private Date payDate; // 결제일자
 
 	public String getMemberId() {
 		return memberId;
@@ -41,6 +42,14 @@ public class UseHstrDto {
 
 	public void seteTime(Date eTime) {
 		this.eTime = eTime;
+	}
+
+	public Date getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
 	}
 
 }

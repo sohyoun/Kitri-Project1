@@ -1,5 +1,7 @@
 package project.kitri.data;
 
+import java.util.Date;
+
 // 음식주문 Dto
 
 public class OrderHstrDto {
@@ -7,6 +9,7 @@ public class OrderHstrDto {
 	private String memberId; // 회원ID
 	private String payNum; // 결제번호
 	private int orderAmt; // 음식수량
+	private Date payDate; // 결제일자
 
 	public String getFoodNum() {
 		return foodNum;
@@ -38,6 +41,14 @@ public class OrderHstrDto {
 
 	public void setOrderAmt(int orderAmt) {
 		this.orderAmt = orderAmt;
+	}
+
+	public Date getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
 	}
 
 }

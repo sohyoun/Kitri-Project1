@@ -1,24 +1,29 @@
 package project.kitri.data;
 
+import java.util.Date;
+
 // 도서 Dto
 
 public class BookDto {
 
-	private int bookNum;		//도서코드
-	private int genreNum;		//장르코드
-	private String bookName;	//도서명
-	private int bookCtg;		//종류코드
-	private String author;		//작가
-	private String publisher;	//출판사
-	private int bookPrice;		//정가
-	private char rentState;		//대출현황
-	private char replace;		//교체요망
+	private Date bookNum; // 도서코드
+	private int genreNum; // 장르코드
+	private String bookName; // 도서명
+	private int bookCtg; // 종류코드
+	private String author; // 작가
+	private String publisher; // 출판사
+	private int bookPrice; // 정가
+	private char rentState; // 대출현황
+	private char replace; // 교체요망
+	private char state; // 상태
+	public CategoryDto ctgDto = new CategoryDto();
+	public GenreDto genDto = new GenreDto();
 
-	public int getBookNum() {
+	public Date getBookNum() {
 		return bookNum;
 	}
 
-	public void setBookNum(int bookNum) {
+	public void setBookNum(Date bookNum) {
 		this.bookNum = bookNum;
 	}
 
@@ -84,6 +89,14 @@ public class BookDto {
 
 	public void setReplace(char replace) {
 		this.replace = replace;
+	}
+
+	public char getState() {
+		return state;
+	}
+
+	public void setState(char state) {
+		this.state = state;
 	}
 
 }

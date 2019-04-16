@@ -60,12 +60,12 @@ public class FoodDao {
 				foodDto.setFoodCtg(rs.getString("food_ctg"));
 				foodDto.setFoodName(rs.getString("food_name"));
 				foodDto.setFoodPrice(rs.getInt("food_price"));
-				foodDto.setStock1name(rs.getString("stock1_name"));
-				foodDto.setStock1num(rs.getInt("stock1_num"));
-				foodDto.setStock2name(rs.getString("stock2_name"));
-				foodDto.setStock2num(rs.getInt("stock2_num"));
-				foodDto.setStock3name(rs.getString("stock3_name"));
-				foodDto.setStock3num(rs.getInt("stock3_num"));
+				foodDto.setStock1Name(rs.getString("stock1_name"));
+				foodDto.setStock1Num(rs.getInt("stock1_num"));
+				foodDto.setStock2Name(rs.getString("stock2_name"));
+				foodDto.setStock2Num(rs.getInt("stock2_num"));
+				foodDto.setStock3Name(rs.getString("stock3_name"));
+				foodDto.setStock3Num(rs.getInt("stock3_num"));
 			}
 			
 			
@@ -163,36 +163,33 @@ public class FoodDao {
 //			}
 //		}
 		
-		//한개의 food의 재고찾기 (카테고리별)
-		public Map<String, StockDto> selectStock(String food_ctg) {
-			StockDto stockDto = new StockDto(); // FoodDto에 OrderHstrDto, StockDto 생성해놓음
-			Map<String, StockDto> stockmap = new Hashtable<String, StockDto>();
+	
+		
+		//재고 찾기 이름으로
+		public StockDto getStock(String stockname) {
+			StockDto stockDto = new StockDto();
+			
 			conn = null;					//연결
 			PreparedStatement stmt = null;	//명령
-			rs = null;						//결과
-			
+			rs = null;	
 			
 			try {
 				conn = DriverManager.getConnection(url, user, pw);
 				
-				String sql = "select stock_name, rest_amt "
-						+ "from stock "
-						+ "where food_ctg = ?";
-				
+				String sql= "select stock_name, rest_amt from stock "
+							+ "where stock_name = ?";
+						
 				stmt = conn.prepareStatement(sql);
-				stmt.setString(1, food_ctg);//?의 숫자번쨰
+				stmt.setString(1, stockname);
 				rs = stmt.executeQuery();
 				
-				if(rs.next()) {
+				while(rs.next()) {
 					stockDto.setStockName(rs.getString("stock_name"));
 					stockDto.setRestAmt(rs.getInt("rest_amt"));
-					//map의 key는 stock_name!
-					stockmap.put(rs.getString("stock_name"), stockDto);
 				}
 				
-				
-			} catch (SQLException e) {
-				System.out.println("연결 실패" + e.getStackTrace());
+			} catch (Exception e) {
+				e.printStackTrace();
 			} finally {
 				try {
 					if(rs != null)
@@ -205,7 +202,44 @@ public class FoodDao {
 					System.out.println("해제 실패" + e.getStackTrace());
 				}
 			}
-			return stockmap;
+			return stockDto ;
 		}
-
+		
+		//재고 빼기
+		public void updateStock(int restamt, String stockname) {
+			
+			
+			conn = null;					//연결
+			PreparedStatement stmt = null;	//명령
+			rs = null;	
+			
+			try {
+				conn = DriverManager.getConnection(url, user, pw);
+				
+				String sql= "update stock set rest_amt = ?"
+							+ "where stock_name = ?";
+						
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, restamt);
+				stmt.setString(2, stockname);
+				
+				rs = stmt.executeQuery();
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(rs != null)
+						rs.close();
+					if(stmt != null)
+						stmt.close();
+					if(conn != null)
+						conn.close();
+				} catch (SQLException e) {
+					System.out.println("해제 실패" + e.getStackTrace());
+				}
+			}
+			
+		}
 }

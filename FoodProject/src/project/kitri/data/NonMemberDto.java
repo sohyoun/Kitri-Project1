@@ -2,21 +2,18 @@ package project.kitri.data;
 
 import java.util.Date;
 
-// 회원 Dto
-
-public class MemberDto {
-
-	private String memberId; // 회원ID
-	private String name; // 이름
-	private String phoneNum1; // 전화번호1
-	private String PhoneNum2; // 전화번호2
-	private String PhoneNum3; // 전화번호3
-	private String address; // 주소
-	private Date birth; // 생년월일
-	private int paySum; // 결제금액_누적
-	private int couBirth; // 생일쿠폰
-	private int couSale; // 천원할인쿠폰
-	private char state; // 상태
+public class NonMemberDto {
+	
+	private String memberId;	//회원ID
+	private String name;		//이름
+	private String phoneNum1;	//전화번호1
+	private String PhoneNum2;	//전화번호2
+	private String PhoneNum3;	//전화번호3
+	private String address;		//주소
+	private Date birth;			//생년월일
+	private int paySum;			//결제금액_누적
+	private int couBirth;		//생일쿠폰
+	private int couSale;		//천원할인쿠폰
 
 	public String getMemberId() {
 		return memberId;
@@ -97,13 +94,4 @@ public class MemberDto {
 	public void setCouSale(int couSale) {
 		this.couSale = couSale;
 	}
-
-	public char getState() {
-		return state;
-	}
-
-	public void setState(char state) {
-		this.state = state;
-	}
-
 }

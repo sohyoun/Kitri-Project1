@@ -7,7 +7,7 @@ public class StockDto {
 	private String foodCtg; // 음식종류
 	private String stockName; // 재고명
 	private int restAmt; // 잔여수량
-	private String unitCost; // 단가
+	private int unitCost; // 단가
 
 	public String getFoodCtg() {
 		return foodCtg;
@@ -33,11 +33,11 @@ public class StockDto {
 		this.restAmt = restAmt;
 	}
 
-	public String getUnitCost() {
+	public int getUnitCost() {
 		return unitCost;
 	}
 
-	public void setUnitCost(String unitCost) {
+	public void setUnitCost(int unitCost) {
 		this.unitCost = unitCost;
 	}
 

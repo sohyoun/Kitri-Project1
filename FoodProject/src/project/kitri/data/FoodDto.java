@@ -3,26 +3,16 @@ package project.kitri.data;
 // 음식 Dto
 
 public class FoodDto {
-
-	public OrderHstrDto orderHstrDto = new OrderHstrDto();
-	private String foodCtg; // 음식종류
 	private String foodName; // 음식이름
+	private String foodCtg; // 음식종류
 	private int foodPrice; // 음식가격
-	private String stock1name;
-	private int stock1num;
-	private String stock2name;
-	private int stock2num;
-	private String stock3name;
-	private int stock3num;
-
-	//////////////////////////////////////////
-	public String getFoodCtg() {
-		return foodCtg;
-	}
-
-	public void setFoodCtg(String foodCtg) {
-		this.foodCtg = foodCtg;
-	}
+	private String stock1Name; // 재고1
+	private int stock1Num; // 재고1수량
+	private String stock2Name; // 재고2
+	private int stock2Num; // 재고2수량
+	private String stock3Name; // 재고3
+	private int stock3Num; // 재고3수량
+	private char state; // 상태
 
 	public String getFoodName() {
 		return foodName;
@@ -30,6 +20,14 @@ public class FoodDto {
 
 	public void setFoodName(String foodName) {
 		this.foodName = foodName;
+	}
+
+	public String getFoodCtg() {
+		return foodCtg;
+	}
+
+	public void setFoodCtg(String foodCtg) {
+		this.foodCtg = foodCtg;
 	}
 
 	public int getFoodPrice() {
@@ -40,53 +38,60 @@ public class FoodDto {
 		this.foodPrice = foodPrice;
 	}
 
-	//////////////////////////////////////////////
-	public String getStock1name() {
-		return stock1name;
+	public String getStock1Name() {
+		return stock1Name;
 	}
 
-	public void setStock1name(String stock1name) {
-		this.stock1name = stock1name;
+	public void setStock1Name(String stock1Name) {
+		this.stock1Name = stock1Name;
 	}
 
-	public int getStock1num() {
-		return stock1num;
+	public int getStock1Num() {
+		return stock1Num;
 	}
 
-	public void setStock1num(int stock1num) {
-		this.stock1num = stock1num;
+	public void setStock1Num(int stock1Num) {
+		this.stock1Num = stock1Num;
 	}
 
-	public String getStock2name() {
-		return stock2name;
+	public String getStock2Name() {
+		return stock2Name;
 	}
 
-	public void setStock2name(String stock2name) {
-		this.stock2name = stock2name;
+	public void setStock2Name(String stock2Name) {
+		this.stock2Name = stock2Name;
 	}
 
-	public int getStock2num() {
-		return stock2num;
+	public int getStock2Num() {
+		return stock2Num;
 	}
 
-	public void setStock2num(int stock2num) {
-		this.stock2num = stock2num;
+	public void setStock2Num(int stock2Num) {
+		this.stock2Num = stock2Num;
 	}
 
-	public String getStock3name() {
-		return stock3name;
+	public String getStock3Name() {
+		return stock3Name;
 	}
 
-	public void setStock3name(String stock3name) {
-		this.stock3name = stock3name;
+	public void setStock3Name(String stock3Name) {
+		this.stock3Name = stock3Name;
 	}
 
-	public int getStock3num() {
-		return stock3num;
+	public int getStock3Num() {
+		return stock3Num;
 	}
 
-	public void setStock3num(int stock3num) {
-		this.stock3num = stock3num;
+	public void setStock3Num(int stock3Num) {
+		this.stock3Num = stock3Num;
+	}
+
+	public char getState() {
+		return state;
+	}
+
+	public void setState(char state) {
+		this.state = state;
 	}
 
 }

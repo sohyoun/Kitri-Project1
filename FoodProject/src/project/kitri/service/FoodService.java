@@ -134,7 +134,30 @@ public class FoodService {
 			FoodDto food1 = FoodDao.getInstance().selectFood(food_name);
 			BasketDto bk = new BasketDto(food1, order_amt);
 //		      mf.mc.mfs.addFood(bk);      
+			//재고 빼기
+			//얼만큼 빼야하는가?
+			food1.getStock1Name();
+			//빼야하는 것
+			int delstock1 = food1.getStock1Num()*order_amt;
+			int delstock2 = food1.getStock2Num()*order_amt;
+			int delstock3 = food1.getStock3Num()*order_amt;
+			//원래 재고
+			StockDto stockDto1 = FoodDao.getInstance().getStock(food1.getStock1Name());
+			FoodDao.getInstance().updateStock(stockDto1.getRestAmt()-delstock1,stockDto1.getStockName());
+			if(food1.getStock2Name()!=null) {
+				StockDto stockDto2 = FoodDao.getInstance().getStock(food1.getStock2Name());
+				FoodDao.getInstance().updateStock(stockDto2.getRestAmt()-delstock2,stockDto2.getStockName());
+			}
+			if(food1.getStock3Name() !=null) {
+			StockDto stockDto3 = FoodDao.getInstance().getStock(food1.getStock3Name());
+			FoodDao.getInstance().updateStock(stockDto3.getRestAmt()-delstock3,stockDto3.getStockName());
+			}
+			
 		}
+		//재고 빼기!!!
+		//리스트의 foodname과 같은 food의 stocknum1,2,3만큼 각각 재고에서 빼기
+		
+		
 		cancelOrder();
 	}
 
@@ -163,8 +186,8 @@ public class FoodService {
 	public void foodProccess(String btname) {// food메뉴 버튼 눌렀을 때
 		// db에서 bt와 이름이 같은 row의 정보 빼오기
 		FoodDto food1 = FoodDao.getInstance().selectFood(btname);
-		
-		if(stockProccess(food1)==true) {//만약 return이 true면  : 재고있다
+
+		if (stockProccess(food1) == true) {// 만약 return이 true면 : 재고있다
 			int count = ff.tM.getRowCount();
 
 			// 받아온 정보를 Vector로 만들기
@@ -207,37 +230,38 @@ public class FoodService {
 		} else {
 			JOptionPane.showMessageDialog(ff, "재고가 없습니다!", "재고X", JOptionPane.NO_OPTION);
 		}
-		
+
 	}
 
 	private boolean stockProccess(FoodDto food1) {
 		boolean flag = false;
-		// stock table의 foodctg과 btname의 ctg 같은것 찾음.
-		Map<String, StockDto> stock = FoodDao.getInstance().selectStock(food1.getFoodCtg());
+		StockDto stock1 = FoodDao.getInstance().getStock(food1.getStock1Name());
 		
-		// food1.getStock1name()과 stockname과 같은 것 찾음
-//		int stockCtgCount = stock.size();//ctg안의 재료 종류 수
-		
-		StockDto stockDto1 = stock.get(food1.getStock1name());//food1의 재고1에 해당하는 재고의Dto
-		
-		StockDto stockDto2 = stock.get(food1.getStock2name());
-		
-		StockDto stockDto3 = stock.get(food1.getStock3name());
-		//food1의 재고가 1개밖에 없어서 2,3이 null일때도 생각해야함.!!!!!!!!!
-		if(stockDto1.getRestAmt()<=food1.getStock1num() && stockDto2.getRestAmt()<=food1.getStock2num() && stockDto3.getRestAmt()<=food1.getStock3num()) {
-		//food1의 재료들이 충분할때!
-			flag = true;//completeOrder할때 재고도 다 빼기!!!
+		if (food1.getStock2Name() != null) {//재료2가 있을 때
+			StockDto stock2 = FoodDao.getInstance().getStock(food1.getStock2Name());
+			if(food1.getStock3Name() !=null) {//재료1,2,3이 있을때
+				StockDto stock3 = FoodDao.getInstance().getStock(food1.getStock3Name());
+				if(stock1.getRestAmt() >= food1.getStock1Num() && stock2.getRestAmt() >= food1.getStock2Num()
+				&& stock3.getRestAmt() >= food1.getStock3Num()) {
+					flag = true;
+				} else {
+					flag = false;
+				}
+			} else {//재료1,2만 있을 때
+				if (stock1.getRestAmt() >= food1.getStock1Num() && stock2.getRestAmt() >= food1.getStock2Num()) {
+					flag = true;
+				} else {
+					flag = false;
+				}
+			}
+		} else {//재료1만 있을 때
+			if (stock1.getRestAmt() >= food1.getStock1Num()) {//재료1의 재고충분할때
+				flag = true;
+			} else {
+				flag = false;
+			}
 		}
-		System.out.println(stockDto1);
-		/*
-		int number = 24;
-		System.out.println("두산의 " + number + "번의 선수 정보!!");
-		PlayDto playDto = map.get("DS"+number);
-		System.out.println(playDto); // Map은 내가 집어넣은 key값을 기억해야한다.
-									 // Map안에는 주소값이 저장됨.(주소값=key값)
-		 */
-		// food1.getStock1num() <=restamt 재고가 더 많아야함!
-		// 모든 재료들이 재고가 더 많아야만 넣을 수 잇다.
+	
 		return flag;
 	}
 

@@ -6,13 +6,14 @@ import java.util.Date;
 
 public class RentHstrDto {
 
-	private int bookNum;		//도서코드
-	private String memberId;	//회원ID
-	private String payNum;		//결제번호
-	private Date rentDate;		//대출일자
-	private Date returnDate;	//반납예정일
-	private char rentState;		//반납여부
-	private int rentFee;		//대여료
+	private int bookNum; // 도서코드
+	private String memberId; // 회원ID
+	private String payNum; // 결제번호
+	private Date rentDate; // 대출일자
+	private Date returnDate; // 반납예정일
+	private char rentState; // 반납여부
+	private int rentFee; // 대여료
+	private Date payDate; // 결제일자
 
 	public int getBookNum() {
 		return bookNum;
@@ -68,6 +69,14 @@ public class RentHstrDto {
 
 	public void setRentFee(int rentFee) {
 		this.rentFee = rentFee;
+	}
+
+	public Date getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
 	}
 
 }
