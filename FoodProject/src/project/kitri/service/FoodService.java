@@ -236,26 +236,28 @@ public class FoodService {
 	private boolean stockProccess(FoodDto food1) {
 		boolean flag = false;
 		StockDto stock1 = FoodDao.getInstance().getStock(food1.getStock1Name());
-		
+		int num = (int)ff.tM.getValueAt(i, 3)+1;//i는 food1의 rowindex, 만약 새 메뉴이면 1로 취급
+
 		if (food1.getStock2Name() != null) {//재료2가 있을 때
 			StockDto stock2 = FoodDao.getInstance().getStock(food1.getStock2Name());
 			if(food1.getStock3Name() !=null) {//재료1,2,3이 있을때
 				StockDto stock3 = FoodDao.getInstance().getStock(food1.getStock3Name());
-				if(stock1.getRestAmt() >= food1.getStock1Num() && stock2.getRestAmt() >= food1.getStock2Num()
-				&& stock3.getRestAmt() >= food1.getStock3Num()) {
+				if(stock1.getRestAmt() >= food1.getStock1Num()*num && stock2.getRestAmt() >= food1.getStock2Num()*num////
+				&& stock3.getRestAmt() >= food1.getStock3Num()*num) {
 					flag = true;
 				} else {
 					flag = false;
 				}
 			} else {//재료1,2만 있을 때
-				if (stock1.getRestAmt() >= food1.getStock1Num() && stock2.getRestAmt() >= food1.getStock2Num()) {
+				if (stock1.getRestAmt() >= food1.getStock1Num()*num && stock2.getRestAmt() >= food1.getStock2Num()*num) {////
 					flag = true;
 				} else {
 					flag = false;
 				}
 			}
 		} else {//재료1만 있을 때
-			if (stock1.getRestAmt() >= food1.getStock1Num()) {//재료1의 재고충분할때
+			
+			if (stock1.getRestAmt() >= food1.getStock1Num()*num) {//재료1의 재고충분할때//
 				flag = true;
 			} else {
 				flag = false;
