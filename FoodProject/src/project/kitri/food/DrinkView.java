@@ -25,13 +25,18 @@ public class DrinkView extends JPanel {
 		List<String> foodnamelist = FoodDao.getInstance().getFoodnamelist(foodctg);
 		
 		int len = foodnamelist.size();
-		drinkbtn = new JButton[len];
+		drinkbtn = new JButton[25];
+		for(int i=0;i<25;i++) {
+			drinkbtn[i] = new JButton("+");
+			drinkbtn[i].setVisible(false);
+			add(drinkbtn[i]);
+		}
 		for(int i=0; i<len; i++) {
-			drinkbtn[i] = new JButton(foodnamelist.get(i));
+			drinkbtn[i].setText(foodnamelist.get(i));
 			drinkbtn[i].setFont(new Font("±¼¸²", Font.BOLD, 14));
 			drinkbtn[i].setForeground(Color.WHITE);
 			drinkbtn[i].setBackground(new Color(52, 152, 219));
-			add(drinkbtn[i]);
+			drinkbtn[i].setVisible(true);
 		}
 
 	}

@@ -25,13 +25,18 @@ public class SnackView extends JPanel {
 		List<String> foodnamelist = FoodDao.getInstance().getFoodnamelist(foodctg);
 		
 		int len = foodnamelist.size();
-		snackbtn = new JButton[len];
+		snackbtn = new JButton[25];
+		for(int i=0;i<25;i++) {
+			snackbtn[i] = new JButton("+");
+			snackbtn[i].setVisible(false);
+			add(snackbtn[i]);
+		}
 		for(int i=0; i<len; i++) {
-			snackbtn[i] = new JButton(foodnamelist.get(i));
+			snackbtn[i].setText(foodnamelist.get(i));
 			snackbtn[i].setFont(new Font("±¼¸²", Font.BOLD, 14));
 			snackbtn[i].setForeground(Color.WHITE);
 			snackbtn[i].setBackground(new Color(52, 152, 219));
-			add(snackbtn[i]);
+			snackbtn[i].setVisible(true);
 		}
 	}
 

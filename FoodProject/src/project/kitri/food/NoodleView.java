@@ -24,13 +24,18 @@ public class NoodleView extends JPanel {
 		List<String> foodnamelist = FoodDao.getInstance().getFoodnamelist(foodctg);
 		
 		int len = foodnamelist.size();
-		noodlebtn = new JButton[len];
+		noodlebtn = new JButton[25];
+		for(int i=0;i<25;i++) {
+			noodlebtn[i] = new JButton("+");
+			noodlebtn[i].setVisible(false);
+			add(noodlebtn[i]);
+		}
 		for(int i=0; i<len; i++) {
-			noodlebtn[i] = new JButton(foodnamelist.get(i));
+			noodlebtn[i].setText(foodnamelist.get(i));
 			noodlebtn[i].setFont(new Font("±¼¸²", Font.BOLD, 14));
 			noodlebtn[i].setForeground(Color.WHITE);
 			noodlebtn[i].setBackground(new Color(52, 152, 219));
-			add(noodlebtn[i]);
+			noodlebtn[i].setVisible(true);
 		}
 		
 		
