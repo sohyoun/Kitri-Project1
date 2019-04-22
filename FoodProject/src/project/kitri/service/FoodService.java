@@ -247,7 +247,7 @@ public class FoodService {
 					flag = true;
 				} else {
 					flag = false;  
-				}
+				}  
 			} else {//재료1,2만 있을 때
 				if (stock1.getRestAmt() >= food1.getStock1Num()*num && stock2.getRestAmt() >= food1.getStock2Num()*num) {////
 					flag = true;
