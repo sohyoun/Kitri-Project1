@@ -246,7 +246,7 @@ public class FoodService {
 				&& stock3.getRestAmt() >= food1.getStock3Num()*num) {
 					flag = true;
 				} else {
-					flag = false;
+					flag = false;  
 				}
 			} else {//재료1,2만 있을 때
 				if (stock1.getRestAmt() >= food1.getStock1Num()*num && stock2.getRestAmt() >= food1.getStock2Num()*num) {////
